@@ -11,39 +11,39 @@
 
 
   <div class="keys">
-    <div data-key="65" class="key">
+    <div data-key="65" class="key" onclick=play(this)>
       <kbd>A</kbd>
       <span class="sound">clap</span>
     </div>
-    <div data-key="83" class="key">
+    <div data-key="83" class="key" onclick=play(this)>
       <kbd>S</kbd>
       <span class="sound">hihat</span>
     </div>
-    <div data-key="68" class="key">
+    <div data-key="68" class="key" onclick=play(this)> 
       <kbd>D</kbd>
       <span class="sound">kick</span>
     </div>
-    <div data-key="70" class="key">
+    <div data-key="70" class="key" onclick=play(this)>
       <kbd>F</kbd>
       <span class="sound">openhat</span>
     </div>
-    <div data-key="71" class="key">
+    <div data-key="71" class="key" onclick=play(this)>
       <kbd>G</kbd>
       <span class="sound">boom</span>
     </div>
-    <div data-key="72" class="key">
+    <div data-key="72" class="key" onclick=play(this)>
       <kbd>H</kbd>
       <span class="sound">ride</span>
     </div>
-    <div data-key="74" class="key">
+    <div data-key="74" class="key" onclick=play(this)>
       <kbd>J</kbd>
       <span class="sound">snare</span>
     </div>
-    <div data-key="75" class="key">
+    <div data-key="75" class="key" onclick=play(this)>
       <kbd>K</kbd>
       <span class="sound">tom</span>
     </div>
-    <div data-key="76" class="key">
+    <div data-key="76" class="key" onclick=play(this)>
       <kbd>L</kbd>
       <span class="sound">tink</span>
     </div>
@@ -60,17 +60,25 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
   <script>
-      window.addEventListener('keydown', e=>{
-        const audio =document.querySelector(`audio[data-key="${e.keyCode}"]`)
-        const div =document.querySelector(`div[data-key="${e.keyCode}"]`)
-        div.classList.add("playing")
-        audio.currentTime=0;
-        audio.play()
-      })
-      window.addEventListener('keyup', e=>{
-        const div =document.querySelector(`div[data-key="${e.keyCode}"]`)
-        div.classList.remove("playing")
-      })
+    window.addEventListener('keydown', e => {
+      const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`)
+      const div = document.querySelector(`div[data-key="${e.keyCode}"]`)
+      div.classList.add("playing")
+      audio.currentTime = 0;
+      audio.play()
+    })
+    window.addEventListener('keyup', e => {
+      const div = document.querySelector(`div[data-key="${e.keyCode}"]`)
+      div.classList.remove("playing")
+    })
+
+    // document.getElementsByTagName('data-key').onclick = function () { play(this) }
+
+    function play(div) {
+      const audio = document.querySelector(`audio[data-key="${div.getAttribute('data-key')}"]`)
+      audio.currentTime=0;
+      audio.play();
+    }
 
   </script>
 
