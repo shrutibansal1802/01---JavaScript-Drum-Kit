@@ -5,11 +5,17 @@
   <meta charset="UTF-8">
   <title>JS Drum Kit</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="#">
 </head>
 
 <body>
 
-
+<!-- <nav>
+  <ul>
+    <li><a href="index.html"></a> Drum</li>
+    <li><a href="piano.html">Piano</a></li>
+  </ul>
+</nav> -->
   <div class="keys">
     <div data-key="65" class="key" onclick=play(this)>
       <kbd>A</kbd>
@@ -72,12 +78,15 @@
       div.classList.remove("playing")
     })
 
-    // document.getElementsByTagName('data-key').onclick = function () { play(this) }
 
     function play(div) {
+      div.classList.add("playing")
       const audio = document.querySelector(`audio[data-key="${div.getAttribute('data-key')}"]`)
       audio.currentTime=0;
       audio.play();
+      setTimeout(()=>{
+            div.classList.remove("playing")
+      },250)
     }
 
   </script>
