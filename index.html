@@ -66,24 +66,37 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
   <script>
+    
     window.addEventListener('keydown', e => {
+      
+      //getting the correct audio on clicking particular key using keycode
       const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`)
+      
       const div = document.querySelector(`div[data-key="${e.keyCode}"]`)
       div.classList.add("playing")
       audio.currentTime = 0;
       audio.play()
     })
+    
     window.addEventListener('keyup', e => {
+      
+      //remove playing class on keyup function by getting the keycode
       const div = document.querySelector(`div[data-key="${e.keyCode}"]`)
       div.classList.remove("playing")
     })
 
 
     function play(div) {
+      
+      // add playing class onclick function
       div.classList.add("playing")
       const audio = document.querySelector(`audio[data-key="${div.getAttribute('data-key')}"]`)
+      
+      //set currenttime to 0 ,so audio starts playing everytime without waiting for previous to finish
       audio.currentTime=0;
       audio.play();
+      
+      //remove playing class after 250ms
       setTimeout(()=>{
             div.classList.remove("playing")
       },250)
